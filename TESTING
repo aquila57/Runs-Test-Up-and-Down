@@ -1,0 +1,99 @@
+Testing instructions for all the runs test programs in this
+repository.
+
+eegl64 random number generator
+
+Run runsa to apply the runs test up and down for the
+eegl64 uniform random number generator.  There is
+no parameter.  See the template repository for information
+about the eegl64 generator.
+
+./runsa
+
+This test is expected to pass the Z-score test and the chi
+square test.
+
+--------
+
+Fibonacci random number generator
+
+Run runsfibo to apply the runs test up and down
+to the fibonacci random number generator.
+There is no parameter.
+
+./runsfibo
+
+This test is expected to fail.
+
+--------
+
+64 bit LFSR random number generator
+
+Run runslfsr to apply the runs test up and down
+to the 64 bit LFSR random number generator.
+There is no parameter.
+
+./runslfsr
+
+This test is expected to fail.
+
+--------
+
+32 bit RANDU random number generator
+
+Run ruruns to apply the runs test up and down
+to the 32 bit RANDU random number generator.
+There is no parameter.
+
+./ruruns
+
+The RANDU random number generator passes the Z-score
+test but fails the chi square test.
+
+--------
+
+The sine wave random number generator
+
+Run runsine to apply the runs test up and down
+to the sine wave random number generator.
+There is no parameter.
+
+./runsine
+
+The sine wave random number generator passes the Z-score test
+and the chi square test.
+
+--------
+
+GNU Scientific Library random number generators
+
+Run runall.sh to apply the runs test up and down
+to the entire collection of GNU Scientific Library random number
+generators.  There is no parameter for this procedure, but
+the list of random number generators is in a file, called
+allgsl.lst.
+
+./runall.sh
+
+The output from this test is in a file, called allgsl.out.
+You may browse this file to see the results.  The following
+GSL generators fail this test.  The rest of the generators
+pass.
+
+	random32-bsd
+	random32-glibc2
+	random32-libc5
+	randu
+
+--------
+
+Submit more runs test generators.
+
+If you have a random number generator not included in this
+repository, you are welcome to add more runs test programs
+to this repository.
+
+For more information about this repository, read README.md
+and INSTALL.
+
+--------

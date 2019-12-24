@@ -1,0 +1,25 @@
+Installing programs for runs test up and down:
+
+The following dependencies are used by the programs in this
+repository.
+
+GNU Scientific Library.
+
+sudo apt-get install libgsl2
+sudo apt-get install libgsl-dev
+sudo apt-get install gsl-ref-html
+
+Make shell scripts executable.
+
+chmod 755 *.sh
+
+Next compile the programs.
+
+./inst.sh
+
+To de-install the runs test up and down repository:
+
+./deinst.sh
+
+To see how to test runs test programs, read TESTING.
+
