@@ -5,4 +5,3 @@ make -f runslfsr.mak clean
 make -f runsine.mak clean
 make -f runsgsl.mak clean
 make -f ruruns.mak clean
-make -f runten.mak clean
