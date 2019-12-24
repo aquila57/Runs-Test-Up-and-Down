@@ -13,7 +13,11 @@ these formulas.
 https://www.eg.bucknell.edu/~xmeng/Course/CS6337/Note/master/node44.html
 
 expval2.png		Expected value where i = N - 1
+
 expval.png		Expected value where i < N - 1
+
 mualpha.png		Mean run length
+
 variance.png		Variance of the run length
+
 zedzero.png		Formula for computing Z0
