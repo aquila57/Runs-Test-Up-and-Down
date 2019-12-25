@@ -177,8 +177,11 @@ because other groups of random??? generators pass the test.  For
 example, the random256 group passes the test.
 
 random32-bsd
+
 random32-glibc2
+
 random32-libc5
+
 randu
 
 ----------------
