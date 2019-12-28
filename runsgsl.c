@@ -112,9 +112,19 @@ int main(void)
          "allocating xx->len_tally\n");
       exit(1);
       } /* out of memory */
+   /*************************************************************/
+   /* initialize global data                                    */
+   /*************************************************************/
+   xx->dieharder_rngname[0] = '\0';
+   xx->rngname = (char *) NULL;
+   xx->generator = -1;
+   xx->eofsw     = 0;
+   /*************************************************************/
    start_rng(xx);  /* initialize the RNG */
    bldsmpls(xx);   /* create ten million random samples */
    gsl_rng_free(xx->rng);   /* free the GSL RNG */
+   printf("GNU Scientific Library Generator: %s\n",
+      xx->rngname);
    calc_zedzero(xx);   /* compute Z-score */
    calcchi_up(xx);     /* run chi square test */
    freeall(xx);        /* free all allocated memory */

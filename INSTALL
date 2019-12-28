@@ -9,6 +9,12 @@ sudo apt-get install libgsl2
 sudo apt-get install libgsl-dev
 sudo apt-get install gsl-ref-html
 
+Dieharder package.
+
+sudo apt-get install dieharder
+sudo apt-get install libdieharder-dev
+sudo apt-get install libdieharder3
+
 Make shell scripts executable.
 
 chmod 755 *.sh

@@ -13,11 +13,7 @@ The tests in this repository are applied against a variety
 of random number generators, some weak and some strong.
 The purpose of this repository is to show how the runs
 test is performed, and what types of generators pass or
-fail the test.  Dieharder random number generators are
-not included in this repository.
-
-For tests against dieharder random number generators, see
-the repository "Template".
+fail the test.
 
 The inspiration for this repository is an online document
 at Bucknell University by Professor Xiannong Meng.
@@ -183,6 +179,38 @@ random32-glibc2
 random32-libc5
 
 randu
+
+----------------
+
+Dieharder generators
+
+The dieharder package contains 74 well known random number
+generators.  Dieharder can generate 32 bit unsigned integers
+from these generators with the following command.
+
+dieharder -g nnn -t yyy -o
+
+where nnn is the three digit number of the generator, and
+yyy is the number of integers to generate.
+
+For example,
+
+dieharder -g 053 -t 1000 -o
+
+This example generates one thousand 32 bit integers using
+the taus2 generator.  053 is the number of the taus2 generator.
+
+To see all the generator numbers, run the following command.
+
+dieharder -g -l
+
+The runs up and down command for dieharder generators in this
+repository is called tstdie.sh.  The parameter for this command
+is the dieharder generator number.  For example,
+
+tstdie.sh 053
+
+This runs the test using the taus2 generator from dieharder.
 
 ----------------
 

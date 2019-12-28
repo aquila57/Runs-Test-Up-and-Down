@@ -87,6 +87,27 @@ pass.
 
 --------
 
+Dieharder package random number generators
+
+Run tstdie.sh to apply the runs up and down test to the
+dieharder collection of random number generators.  There
+is one parameter, the number of the dieharder generator.
+
+./tstdie.sh RNG_number
+
+Example,
+
+./tstdie.sh 053
+
+This example runs the test on the dieharder taus2 generator.
+
+To find a list of dieharder random number generators,
+enter the following dieharder command.
+
+dieharder -g -l
+
+--------
+
 Submit more runs test generators.
 
 If you have a random number generator not included in this

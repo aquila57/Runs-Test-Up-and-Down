@@ -43,7 +43,7 @@ void calc_zedzero(xxfmt *xx)
    meana = ((2.0 * dblsz) - 1.0) / 3.0;
    variance = ((16.0 * dblsz) - 29.0) / 90.0;
    zedzero = (alpha - meana) / sqrt(variance);
-   printf("\tTest for Runs Up and Down\n");
+   printf("\t   Runs Up and Down Test\n");
    printf("\n");
    printf("Samples   %15d\n", SMPLS);
    printf("Runs Up   %15.0f\n", xx->tot_up_runs);

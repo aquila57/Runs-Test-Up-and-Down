@@ -24,8 +24,11 @@
 
 void freeall(xxfmt *xx)
    {
-   free(xx->ee->state);
-   free(xx->ee);
+   if (xx->ee != NULL)
+      {
+      free(xx->ee->state);
+      free(xx->ee);
+      } /* if eegl64 activated */
    free(xx->smpls);
    free(xx->up_tally);
    free(xx->down_tally);
