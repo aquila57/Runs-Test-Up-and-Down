@@ -31,10 +31,22 @@ void bldsmpls(xxfmt *xx)
    xx->smpl_q = (double *) xx->smpls + SMPLS;
    /* determine if the first run is up or down */
    bld_frst_run(xx);
-   while (xx->smpl_p < xx->smpl_q)
+   if (xx->eofsw)
       {
+      fprintf(stderr,"bldsmpls: end of file "
+         "reading first sample\n");
+      exit(1);
+      } /* if end of file */
+   while (!xx->eofsw)
+      {
+      if (xx->smpl_p >= xx->smpl_q) break;
       bld_curr_smpl(xx);
-      *xx->smpl_p++ = xx->curr_smpl;
+      if (xx->eofsw)
+         {
+         fprintf(stderr,"bldsmpls: end of file\n");
+	 break;
+         } /* if end of file */
+      else *xx->smpl_p++ = xx->curr_smpl;
       } /* for each sample */
    /* tally the final run */
    if (xx->run_direction == UP)

@@ -27,7 +27,10 @@ void gen_curr_smpl(xxfmt *xx)
    xx->prev_smpl = xx->curr_smpl;
    while (1)
       {
-      xx->curr_smpl = gen_dbl(xx);
+      double num;
+      num = gen_dbl(xx);
+      if (xx->eofsw) break;
+      else xx->curr_smpl = num;
       if (xx->curr_smpl != xx->prev_smpl) break;
       } /* gen loop */
    } /* gen_curr_smpl */

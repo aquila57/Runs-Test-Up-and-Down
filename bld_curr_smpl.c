@@ -31,6 +31,11 @@
 void bld_curr_smpl(xxfmt *xx)
    {
    gen_curr_smpl(xx);
+   if (xx->eofsw)
+      {
+      fprintf(stderr,"bld_curr_smpl: end of file\n");
+      return;
+      } /* end of file */
    if (xx->curr_smpl > xx->prev_smpl)          /* run UP */
       {
       if (xx->run_direction == DOWN)
