@@ -75,6 +75,18 @@ generator passes the runs up and down test.
 
 ----------------
 
+etaus
+
+The eetaus random number generator is explained in the repository
+"etaus".  That is a random number generator based on the Tausworthe
+algorithm by Pierre L'Ecuyer at the University of Montreal.
+Etaus uses the Bays-Durham shuffle.  The period length of this
+generator approximates 1.2 * 10^61036 generations.  That is a
+long period length, that never terminates, or wraps around.  The
+etaus generator passes the runs up and down test.
+
+----------------
+
 Fibonacci
 
 The fibonacci random number generator illustrates how a weak
@@ -212,6 +224,103 @@ tstdie.sh 053
 
 This runs the test using the taus2 generator from dieharder.
 
+-----------------------------------------------------------
+
+The following are the subroutines used in the runs up and
+down test.
+
+add_both_tallies.c - add the runs up and runs down totals together
+
+bld_curr_smpl.c - create the current sample and calculate whether
+it starts a new run.  If not, add to the length of the current
+run.
+
+bld_frst_run.c - Like the current sample, only this calculates
+whether the first run is up or down.
+
+bld_maxint.c - for dieharder generators, build a table of maximum
+integers unique to each generator.
+
+bld_rngtbl.c - for dieharder, maintain a table of generator names
+associated with each generator number.
+
+bldsmpls.c - create one million samples to calculate number of
+runs up and down, and to calculate the length of each run.
+
+calcchi_up.c - calculate the chi square test based on total
+run lengths.
+
+calc_exp_up.c - calculate expected run statistics.
+
+calc_zedzero.c - calculate Z score based on number of runs.
+
+Eegl64 subroutines.
+
+eeglabt.c - print copyright and a summary of the GNU Public License.
+
+eeglbit.c - output a random bit
+
+eegl.c - core randomizer, outputs a 32 bit unsigned integer.
+
+eeglcrc.c - calculate the crc for the initial seed.
+
+eegldspl.c - display the internal state of the generator.
+
+eeglfrac.c - generate a 53 bit fraction between zero and one.
+
+eeglinit.c - initialize the generator based on date, time, and
+number of ticks since the machine was booted.
+
+eeglint.c - generate a random integer between zero and a limit
+minus one.
+
+eeglpwr.c - generate from 1 to 32 random bits.
+
+eeglsd.c - generate a random seed based on a crc calculation.
+
+eeglstrt.c - initialize the generator based on three seed parameters.
+
+eeglunif.c - generate a 32 bit fraction between zero and one.
+
+Etaus generator.  Each subroutine corresponds to the eegl64
+subroutine, above, with the same name and features.
+
+etausabt.c
+
+etausbit.c
+
+etaus.c
+
+etausdspl.c
+
+etausfrac.c
+
+etausinit.c
+
+etausint.c
+
+etauspwr.c
+
+etausstrt.c
+
+etausunif.c
+
+freeall.c - free all memory allocated from the heap.
+
+gen_curr_smpl.c - called by bld_curr_smpl, generate the
+current sample.
+
+getbyte.c - read one unsigned character from stdin.
+
+getdie.c - read one random integer from dieharder.
+
+permute.c - calculate permutations, used in the calculation
+of expected run statistics.
+
+shwsmpls.c - for debugging, display internal tables of counts.
+
+--------------------------------------------------------------
+
 ----------------
 
 If you have a random number generator that you want to include
@@ -220,3 +329,4 @@ inclusion.
 
 Read the INSTALL and TESTING documents for more information
 about how to use this repository.
+

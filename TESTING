@@ -15,6 +15,20 @@ square test.
 
 --------
 
+etaus random number generator
+
+Run runsa to apply the runs test up and down for the
+etaus uniform random number generator.  There is
+no parameter.  See the etaus repository for information
+about thhis generator.
+
+./runsetaus
+
+This test is expected to pass the Z-score test and the chi
+square test.
+
+--------
+
 Fibonacci random number generator
 
 Run runsfibo to apply the runs test up and down

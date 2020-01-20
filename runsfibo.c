@@ -1,5 +1,5 @@
-/* runsfibo.c - Fibonacci Runs Up and Down Test  Version 0.1.0 */
-/* Copyright (C) 2019 aquila57 at github.com */
+/* runsfibo.c - Runs Up and Down, fibonacci generator  Version 0.1.0 */
+/* Copyright (C) 2020 aquila57 at github.com */
 
 /* This program is free software; you can redistribute it and/or     */
 /* modify it under the terms of the GNU General Public License as    */
@@ -20,7 +20,9 @@
 
 #include "runsa.h"
 
-/* initialize the fibonacci random number generator */
+/* Initialize the eegl64 random number generator */
+/* See the eegl64 repository for more information about */
+/* this generator. */
 
 void start_rng(xxfmt *xx)
    {
@@ -28,11 +30,14 @@ void start_rng(xxfmt *xx)
    xx->fibonum1 = eegl(xx->ee);
    xx->fibonum2 = eegl(xx->ee);
    xx->fibonum3 = xx->fibonum1 + xx->fibonum2;
-   xx->modulus = 65536.0 * 65536.0;
+   xx->modulus = 65536.0;
+   xx->modulus *= 65536.0;
+   free(xx->ee->state);
+   free(xx->ee);
+   xx->ee = NULL;
    } /* start_rng */
 
-/* generator one sample for  the fibonacci */
-/* random number generator */
+/* Generate one uniform sample from zero to one */
 
 double gen_dbl(xxfmt *xx)
    {
@@ -41,6 +46,8 @@ double gen_dbl(xxfmt *xx)
    xx->fibonum2 = xx->fibonum3;
    xx->fibonum3 = xx->fibonum1 + xx->fibonum2;
    num = (double) xx->fibonum3 / xx->modulus;
+   xx->eofsw = 0;
+   xx->count += 1.0;
    return(num);
    } /* gen_dbl */
 
@@ -116,12 +123,14 @@ int main(void)
    xx->rngname = (char *) NULL;
    xx->generator = -1;
    xx->eofsw     = 0;
-   /*************************************************************/
+   xx->count = 0.0;
+   xx->dblsmpls = (double) SMPLS;
    start_rng(xx);  /* initialize the RNG */
    bldsmpls(xx);   /* create ten million random samples */
-   printf("\t    Fibonacci Generator\n");
+   printf("\t    fibonacci Generator\n");
    calc_zedzero(xx);   /* compute Z-score */
    calcchi_up(xx);     /* run chi square test */
+   xx->ee = NULL;
    freeall(xx);        /* free all allocated memory */
    return(0);          /* end of job */
    } /* main */

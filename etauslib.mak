@@ -1,0 +1,10 @@
+etausabt.c
+etausbit.c
+etaus.c
+etausdspl.c
+etausfrac.c
+etausinit.c
+etausint.c
+etauspwr.c
+etausstrt.c
+etausunif.c

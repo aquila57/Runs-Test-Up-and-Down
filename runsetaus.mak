@@ -1,4 +1,4 @@
-#  runsa.mak - Compile runsa.c Version 0.1.0
+#  runsetaus.mak - Compile runsetaus.c Version 0.1.0
 #  Copyright (C) 2019 aquila57 at github.com
 
 #  This program is free software; you can redistribute it and/or
@@ -18,7 +18,7 @@
    #  59 Temple Place - Suite 330
    #  Boston, MA 02111-1307, USA.
 
-OBJ=runsa.o
+OBJ=runsetaus.o
 
 CC=gcc
 
@@ -26,11 +26,11 @@ CFLAGS=-c -Wall -O2
 
 LDFLAGS=-L. -lruns -lgsl -lgslcblas -lm
 
-runsa:				$(OBJ)
-		$(CC) -Wall -O2 $(OBJ) -o runsa $(LDFLAGS)
+runsetaus:			$(OBJ)
+		$(CC) -Wall -O2 $(OBJ) -o runsetaus $(LDFLAGS)
 
-runsa.o:			runsa.c
-		$(CC) $(CFLAGS) runsa.c
+runsetaus.o:			runsetaus.c
+		$(CC) $(CFLAGS) runsetaus.c
 
 clean:
-		rm -f $(OBJ) runsa
+		rm -f $(OBJ) runsetaus

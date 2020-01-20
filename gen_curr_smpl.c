@@ -32,5 +32,6 @@ void gen_curr_smpl(xxfmt *xx)
       if (xx->eofsw) break;
       else xx->curr_smpl = num;
       if (xx->curr_smpl != xx->prev_smpl) break;
+      xx->prev_smpl = xx->curr_smpl;
       } /* gen loop */
    } /* gen_curr_smpl */

@@ -1,5 +1,5 @@
-/* runslfsr.c - LFSR Runs Up and Down Test  Version 0.1.0 */
-/* Copyright (C) 2019 aquila57 at github.com */
+/* runsetaus.c - Runs Up and Down, etaus generator  Version 0.1.0 */
+/* Copyright (C) 2020 aquila57 at github.com */
 
 /* This program is free software; you can redistribute it and/or     */
 /* modify it under the terms of the GNU General Public License as    */
@@ -20,37 +20,13 @@
 
 #include "runsa.h"
 
-#define MYLFSROUT (xx->out = (((xx->lfsr >> 4) \
-   ^ (xx->lfsr >> 3) \
-   ^ (xx->lfsr >> 1) \
-   ^ (xx->lfsr >> 0)) & 1))
-
-#define MYLFSRLOWBIT (xx->lowbit = xx->major & 1)
-
-#define MYLFSRROLL (xx->lfsr0 = xx->major = \
-(xx->major >> 1) | (xx->out << 31))
-
-#define MYLFSRCARRY (xx->lfsr = xx->minor = \
-(xx->minor >> 1) | (xx->lowbit << 31))
-
-#define MYLFSR (MYLFSROUT,MYLFSRLOWBIT,MYLFSRROLL,MYLFSRCARRY)
-
-/********************************************************/
-/* Initialize the LFSR random number generator          */
-/* The LFSR in this generator comes from the following  */
-/* http://courses.cse.tamu.edu/walker/csce680/          */
-/* lfsr_table.pdf                                       */
-/* 64 bit LFSR is 64,63,61,60 with low order bit equal  */
-/* to 64                                                */
-/********************************************************/
+/* Initialize the etaus random number generator */
+/* See the etaus repository for more information about */
+/* this generator. */
 
 void start_rng(xxfmt *xx)
    {
-   xx->ee = (eefmt *) eeglinit();
-   xx->lfsr0 = xx->major = eegl(xx->ee);
-   xx->lfsr  = xx->minor = eegl(xx->ee);
-   xx->lowbit = xx->out = 0;
-   xx->modulus = 65536.0 * 65536.0;
+   xx->et = (etfmt *) etausinit();
    } /* start_rng */
 
 /* Generate one uniform sample from zero to one */
@@ -58,10 +34,7 @@ void start_rng(xxfmt *xx)
 double gen_dbl(xxfmt *xx)
    {
    double num;
-   /* generate the next state in the 64 bit LFSR */
-   MYLFSR;
-   /* convert the LFSR to a fraction from zero to one */
-   num = (double) xx->lfsr / xx->modulus;
+   num = etausunif(xx->et);
    return(num);
    } /* gen_dbl */
 
@@ -137,12 +110,13 @@ int main(void)
    xx->rngname = (char *) NULL;
    xx->generator = -1;
    xx->eofsw     = 0;
-   /*************************************************************/
    start_rng(xx);  /* initialize the RNG */
    bldsmpls(xx);   /* create ten million random samples */
-   printf("\t      LFSR Generator\n");
+   printf("\t     etaus Generator\n");
    calc_zedzero(xx);   /* compute Z-score */
    calcchi_up(xx);     /* run chi square test */
+   free(xx->et);
+   xx->ee = NULL;
    freeall(xx);        /* free all allocated memory */
    return(0);          /* end of job */
    } /* main */
