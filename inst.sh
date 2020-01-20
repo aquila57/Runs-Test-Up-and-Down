@@ -1,5 +1,7 @@
 #!/bin/bash
+make -f libruns.mak
 make -f runsa.mak
+make -f runsetaus.mak
 make -f runsfibo.mak
 make -f runslfsr.mak
 make -f runsine.mak

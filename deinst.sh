@@ -1,5 +1,7 @@
 #!/bin/bash
+make -f libruns.mak clean
 make -f runsa.mak clean
+make -f runsetaus.mak clean
 make -f runsfibo.mak clean
 make -f runslfsr.mak clean
 make -f runsine.mak clean
